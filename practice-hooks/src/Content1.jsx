@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 const tabs = ['posts', 'comments', 'albums']
-function Content() {
+function Content1() {
 
     const [type, setType] = useState('posts')
     const [posts, setPosts] = useState([])
@@ -22,6 +22,7 @@ function Content() {
         window.addEventListener('scroll', handleScroll)
 
         // Cleanup function runs before component is unmounted
+        // Avoid memory leaks
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
@@ -63,4 +64,4 @@ function Content() {
     )
 }
 
-export default Content
+export default Content1
