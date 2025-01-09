@@ -21,6 +21,11 @@ function Content() {
 
         window.addEventListener('scroll', handleScroll)
 
+        // Cleanup function runs before component is unmounted
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+
     }, [])
 
     return (
