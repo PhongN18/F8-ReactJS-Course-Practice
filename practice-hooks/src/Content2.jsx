@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 
 function Content2() {
+    const [avatar, setAvatar] = useState('')
 
-    const [countdown, setCountdown] = useState(180)
+    useEffect(()  =>  {
+        return () => {
+            URL.revokeObjectURL(avatar)
+        }
+    }, [avatar])
 
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            setCountdown(prev => prev-1)
-        }, 1000)
+    const handlePreviewAvatar = (e) => {
+        const files = e.target.files[0]
 
-        return () => clearInterval(timerId)
-    }, [])
+        setAvatar(URL.createObjectURL(files));
+        console.log(avatar);
+    }
 
     return (
         <div>
-            <h1>{countdown}</h1>
+            <input type="file" onChange={handlePreviewAvatar} />
+            <img src={avatar} alt="" style={{width: "100%"}}/>
         </div>
     )
 }
